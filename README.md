@@ -1,24 +1,18 @@
 # README
+## Practice AWS Deploy 
+### CodeBuild
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+### CodeDeploy
 
-* Ruby version
 
-* System dependencies
+### CodePipeline
 
-* Configuration
 
-* Database creation
+### ECS
 
-* Database initialization
 
-* How to run the test suite
+### EC2
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+### Elastic Beanstalk
