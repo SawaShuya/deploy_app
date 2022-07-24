@@ -21,8 +21,8 @@ phases:
       - echo Building the Docker images ...
       - docker-compose up -d
       - echo Attaching a tag to image ...
-      - docker tag $IMAGE_REPO_NAME_APP $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/deploy_app/$IMAGE_REPO_NAME_APP:latest
-      - docker tag $IMAGE_REPO_NAME_DB $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/deploy_app/$IMAGE_REPO_NAME_DB:latest
+      - docker tag $IMAGE_REPO_NAME_APP $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_APP:latest
+      - docker tag $IMAGE_REPO_NAME_DB $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_DB:latest
   
   post_build:
     commands:
