@@ -1,10 +1,10 @@
 version: 0.2
 env:
   parameter-store:
-    IMAGE_REPO_NAME_APP: "deploy_app_web"
-    IMAGE_REPO_NAME_DB: "postgres"
-    AWS_DEFAULT_REGION: "ap-northeast-1"
-    AWS_ACCOUNT_ID: "820356253015"
+    IMAGE_REPO_NAME_APP: "image_repo_name_app"
+    IMAGE_REPO_NAME_DB: "image_repo_name_db"
+    AWS_DEFAULT_REGION: "default_region"
+    AWS_ACCOUNT_ID: "account_id"
 phases:
   install:
     runtime-versions:
