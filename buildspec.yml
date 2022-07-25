@@ -14,10 +14,9 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      # - docker login -u AWS -p $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
     commands:
-      - echo Build started on 'date' 
+      - echo Build started on `date` 
       - echo Building the Docker images ...
       - docker-compose up -d
       - echo Attaching a tag to image ...
@@ -26,7 +25,7 @@ phases:
   
   post_build:
     commands:
-      - echo Build completed on 'date'
+      - echo Build completed on `date`
       - echo Pushing the Docker image ...
       - echo Pushing app ...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_APP:latest
