@@ -31,6 +31,10 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_APP:latest
       - echo Pushing db ...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_DB:latest
+
+      - $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_APP:latest > web_imagedefinitions.json
+      - $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_DB:latest > db_imagedefinitions.json
 artifacts:
   files: 
-    - imagedefinitions.json
+    - web_imagedefinitions.json
+    - db_imagedefinitions.json
