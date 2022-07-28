@@ -5,6 +5,8 @@ env:
     IMAGE_NAME_DB: "image_name_db"
     AWS_DEFAULT_REGION: "default_region"
     AWS_ACCOUNT_ID: "account_id"
+    DOCKERHUB_PASSWORD: "dockerhub_password"
+    DOCKERHUB_USERNAME: "dcokerhub_username"
 phases:
   install:
     runtime-versions:
@@ -12,6 +14,8 @@ phases:
   
   pre_build:
     commands:
+      - esho Logging in to Dockerhub...
+      - echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin  
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - echo Pulling latest images...
