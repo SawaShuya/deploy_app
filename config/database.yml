@@ -85,5 +85,6 @@ test:
 production:
   <<: *default
   database: deploy_app_production
+  host: db.deploy_app_local
   username: deploy_app
   password: <%= ENV['DEPLOY_APP_DATABASE_PASSWORD'] %>
