@@ -21,6 +21,7 @@ phases:
     commands:
       - echo Build started on `date` 
       - echo Building the Docker images ...
+      - docker-compose build
       - docker-compose up -d
       - echo Attaching a tag to image ...
       - docker tag $IMAGE_NAME_WEB $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_WEB:latest
