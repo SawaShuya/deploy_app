@@ -33,7 +33,7 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_DB:latest
       - echo Writing image definitions file...
       - printf '[{"name":"web","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_WEB:latest > web_imagedefinitions.json
-      - printf '[{"name":"db","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_DB:latest > db_imagedefinitions.json
+      - printf '[{"name":"postgres","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_DB:latest > db_imagedefinitions.json
 artifacts:
   files: 
     - web_imagedefinitions.json
