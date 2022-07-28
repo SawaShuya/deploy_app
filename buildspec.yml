@@ -1,8 +1,8 @@
 version: 0.2
 env:
   parameter-store:
-    IMAGE_REPO_NAME_APP: "image_repo_name_app"
-    IMAGE_REPO_NAME_DB: "image_repo_name_db"
+    IMAGE_NAME_WEB: "image_name_web"
+    IMAGE_NAME_DB: "image_name_db"
     AWS_DEFAULT_REGION: "default_region"
     AWS_ACCOUNT_ID: "account_id"
 phases:
@@ -20,20 +20,20 @@ phases:
       - echo Building the Docker images ...
       - docker-compose up -d
       - echo Attaching a tag to image ...
-      - docker tag $IMAGE_REPO_NAME_APP $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_APP:latest
-      - docker tag $IMAGE_REPO_NAME_DB $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_DB:latest
+      - docker tag $IMAGE_NAME_APP $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_WEB:latest
+      - docker tag $IMAGE_NAME_DB $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_DB:latest
   
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image ...
       - echo Pushing app ...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_APP:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_WEB:latest
       - echo Pushing db ...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_DB:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_DB:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"web","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_APP:latest > web_imagedefinitions.json
-      - printf '[{"name":"db","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_DB:latest > db_imagedefinitions.json
+      - printf '[{"name":"web","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_WEB:latest > web_imagedefinitions.json
+      - printf '[{"name":"db","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME_DB:latest > db_imagedefinitions.json
 artifacts:
   files: 
     - web_imagedefinitions.json
